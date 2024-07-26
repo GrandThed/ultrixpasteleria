@@ -10,6 +10,8 @@ import 'package:ultrixpasteleria/screens/cart/cart_screen.dart';
 import 'package:ultrixpasteleria/screens/pastry_detail/pastry_detail_screen.dart';
 
 void main() async {
+  const GOOGLE_ID =
+      String.fromEnvironment('GOOGLE_ID', defaultValue: 'GOOGLE_ID');
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -19,9 +21,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   provider.FirebaseUIAuth.configureProviders([
-    providers.GoogleProvider(
-        clientId:
-            "363949028736-ujarf83c5dlgidlvpoo5cll0p9gq9i34.apps.googleusercontent.com"),
+    providers.GoogleProvider(clientId: GOOGLE_ID),
   ]);
   runApp(const ProviderScope(child: MyApp()));
 }
