@@ -16,11 +16,11 @@ class PastryItem {
       this.description,
       this.nutritionalValue});
 
-  PastryItem.fromJson(Map<String, dynamic> json) {
+  PastryItem.fromJson(Map<String, dynamic> json, String currentId) {
     available = json['available'];
     image = json['image'];
     title = json['title'];
-    id = json['id'];
+    id = currentId;
     price = json['price'];
     description = json['description'];
     if (json['nutritionalValue'] != null) {
@@ -65,20 +65,3 @@ class NutritionalValue {
     return data;
   }
 }
-
-final pastryItemExample = PastryItem.fromJson({
-  "id": "1",
-  "available": true,
-  "image": "url",
-  "price": 30000,
-  "title": "Rustic Bakery",
-  "description":
-      "This charming bakery is known for its freshly baked goods, made with traditional recipes and high-quality ingredients. The aroma of freshly baked bread fills the air, inviting customers to indulge in a variety of delicious pastries and loaves.",
-  "nutritionalValue": [
-    {"name": "Protein", "value": 20},
-    {"name": "Fat", "value": 30},
-    {"name": "Carbs", "value": 5},
-    {"name": "Calories", "value": 11},
-    {"name": "Sugars", "value": 9}
-  ]
-});

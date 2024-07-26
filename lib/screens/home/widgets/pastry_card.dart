@@ -4,9 +4,9 @@ import 'package:ultrixpasteleria/screens/home/widgets/pastry_card_add_unit.dart'
 import 'package:ultrixpasteleria/screens/pastry_detail/pastry_detail_screen.dart';
 
 class PastryCard extends StatelessWidget {
-  final PastryItem item;
+  final PastryItem pastry;
   const PastryCard({
-    required this.item,
+    required this.pastry,
     super.key,
   });
 
@@ -22,15 +22,15 @@ class PastryCard extends StatelessWidget {
         GestureDetector(
           onTap: () => Navigator.pushNamed(
               context, PastryDetailScreen.routeName,
-              arguments: item),
+              arguments: pastry),
           child: SizedBox(
             height: cardSize * 0.7,
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               child: Hero(
-                tag: "${item.id ?? "unique"}-image",
-                child: Image.network(fit: BoxFit.cover, item.image!),
+                tag: "${pastry.id ?? "unique"}-image",
+                child: Image.network(fit: BoxFit.cover, pastry.image!),
               ),
             ),
           ),
@@ -44,18 +44,18 @@ class PastryCard extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () => Navigator.pushNamed(
                       context, PastryDetailScreen.routeName,
-                      arguments: item),
+                      arguments: pastry),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         textAlign: TextAlign.left,
-                        item.title ?? "Title",
+                        pastry.title ?? "Title",
                         maxLines: 1,
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Text(
-                        item.description ?? "Item",
+                        pastry.description ?? "Item",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -63,7 +63,9 @@ class PastryCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const PastryCardAddUnit()
+              PastryCardAddUnit(
+                pastryItem: pastry,
+              )
             ],
           ),
         )

@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ultrixpasteleria/domain/models/pastry_item.dart';
+import 'package:ultrixpasteleria/domain/providers/cart_provider.dart';
 
-class PastryCardAddUnit extends StatefulWidget {
+class PastryCardAddUnit extends ConsumerWidget {
+  final PastryItem pastryItem;
   const PastryCardAddUnit({
+    required this.pastryItem,
     super.key,
   });
 
   @override
-  State<PastryCardAddUnit> createState() => _PastryCardAddUnitState();
-}
-
-class _PastryCardAddUnitState extends State<PastryCardAddUnit> {
-  int amount = 0;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final amount = ref.watch(cartProvider).getAmountFromPastryItem(pastryItem);
     if (amount == 0) {
       return Padding(
         padding: const EdgeInsets.only(left: 46),
         child: IconButton(
-          onPressed: () => setState(() {
-            amount += 1;
-          }),
+          onPressed: () {
+            ref.read(cartProvider).increaseAmountFromPastryItem(pastryItem);
+          },
           icon: const Icon(Icons.add),
         ),
       );
@@ -28,16 +27,16 @@ class _PastryCardAddUnitState extends State<PastryCardAddUnit> {
       return Row(children: [
         IconButton(
           icon: const Icon(Icons.remove),
-          onPressed: () => setState(() {
-            amount -= 1;
-          }),
+          onPressed: () {
+            ref.read(cartProvider).decreaseAmountFromPastryItem(pastryItem);
+          },
         ),
         Text(amount.toString()),
         IconButton(
           icon: const Icon(Icons.add),
-          onPressed: () => setState(() {
-            amount += 1;
-          }),
+          onPressed: () {
+            ref.read(cartProvider).increaseAmountFromPastryItem(pastryItem);
+          },
         ),
       ]);
     }

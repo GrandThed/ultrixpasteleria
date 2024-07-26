@@ -27,7 +27,8 @@ class CartListing extends ConsumerWidget {
                     Text(cartListingItem.pastryItem?.title ?? "Name"),
                     Text("${(cartListingItem.pastryItem?.price ?? 0) / 100}\$")
                   ]),
-              trailing: const CartListingAddUnit(),
+              trailing:
+                  CartListingAddUnit(pastryItem: cartListingItem.pastryItem!),
             ),
           ),
         ),

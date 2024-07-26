@@ -21,8 +21,10 @@ class CartNotifier extends ChangeNotifier {
   }
 
   void increaseAmountFromPastryItem(PastryItem pastryItem) {
-    final existingCartListingItemIndex = cartListingItems.indexWhere(
-        (cartListingItem) => cartListingItem.pastryItem?.id == pastryItem.id);
+    final existingCartListingItemIndex =
+        cartListingItems.indexWhere((cartListingItem) {
+      return cartListingItem.pastryItem?.id == pastryItem.id;
+    });
     if (existingCartListingItemIndex != -1) {
       cartListingItems[existingCartListingItemIndex].setAmount(
           (cartListingItems[existingCartListingItemIndex].amount ?? 0) + 1);

@@ -11,7 +11,7 @@ class PastryDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final item = ModalRoute.of(context)!.settings.arguments as PastryItem;
+    final pastry = ModalRoute.of(context)!.settings.arguments as PastryItem;
     const cardSize = 400.0;
     return Scaffold(
       appBar: AppBar(
@@ -22,7 +22,7 @@ class PastryDetailScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text(item.title ?? "title"),
+        title: Text(pastry.title ?? "title"),
       ),
       body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         SizedBox(
@@ -31,8 +31,8 @@ class PastryDetailScreen extends StatelessWidget {
             fit: StackFit.expand,
             children: [
               Hero(
-                tag: "${item.id ?? "unique"}-image",
-                child: Image.network(fit: BoxFit.cover, item.image!),
+                tag: "${pastry.id ?? "unique"}-image",
+                child: Image.network(fit: BoxFit.cover, pastry.image!),
               ),
               Positioned.directional(
                 bottom: 10,
@@ -40,7 +40,7 @@ class PastryDetailScreen extends StatelessWidget {
                 textDirection: TextDirection.ltr,
                 child: Container(
                   color: Colors.white,
-                  child: const PastryDetailAddUnit(),
+                  child: PastryDetailAddUnit(pastryItem: pastry),
                 ),
               )
             ],
@@ -56,7 +56,7 @@ class PastryDetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item.description ?? "Item",
+                      pastry.description ?? "Item",
                     ),
                     const SizedBox(height: 30),
                     Table(
@@ -74,7 +74,7 @@ class PastryDetailScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.labelLarge,
                           ))
                         ]),
-                        ...item.nutritionalValue!
+                        ...pastry.nutritionalValue!
                             .map((nutrient) => TableRow(children: [
                                   TableCell(
                                       child: Text(nutrient.name ?? "nutrient")),

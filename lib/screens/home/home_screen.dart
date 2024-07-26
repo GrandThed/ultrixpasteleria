@@ -47,16 +47,16 @@ class ActivityView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final activity = ref.watch(activityProvider);
+    final activity = ref.watch(pastlyProvider);
     return RefreshIndicator(
-      onRefresh: () => ref.refresh(activityProvider.future),
+      onRefresh: () => ref.refresh(pastlyProvider.future),
       child: ListView(
         children: [
           activity.when(
             data: (data) {
               return SingleChildScrollView(
                   child: Column(children: [
-                ...data.map((pastry) => PastryCard(item: pastry)),
+                ...data.map((pastry) => PastryCard(pastry: pastry)),
               ]));
             },
             error: (error, stackTrace) => const Text("Error :("),
