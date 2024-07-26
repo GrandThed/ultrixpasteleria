@@ -22,7 +22,7 @@ class PastryCard extends StatelessWidget {
         GestureDetector(
           onTap: () => Navigator.pushNamed(
               context, PastryDetailScreen.routeName,
-              arguments: pastryItemExample),
+              arguments: item),
           child: SizedBox(
             height: cardSize * 0.7,
             child: ClipRRect(
@@ -44,7 +44,7 @@ class PastryCard extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () => Navigator.pushNamed(
                       context, PastryDetailScreen.routeName,
-                      arguments: pastryItemExample),
+                      arguments: item),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

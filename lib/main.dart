@@ -10,6 +10,7 @@ import 'package:ultrixpasteleria/screens/cart/cart_screen.dart';
 import 'package:ultrixpasteleria/screens/pastry_detail/pastry_detail_screen.dart';
 
 void main() async {
+  // ignore: constant_identifier_names
   const GOOGLE_ID =
       String.fromEnvironment('GOOGLE_ID', defaultValue: 'GOOGLE_ID');
   WidgetsFlutterBinding.ensureInitialized();
