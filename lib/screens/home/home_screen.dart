@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ultrixpasteleria/common_widgets/shipping_cart.dart';
 import 'package:ultrixpasteleria/domain/models/pastry_item.dart';
+import 'package:ultrixpasteleria/domain/providers/pastry_provider.dart';
 import 'package:ultrixpasteleria/screens/home/widgets/pastry_card.dart';
 
 class Home extends StatelessWidget {
@@ -14,7 +17,7 @@ class Home extends StatelessWidget {
     const points = 0;
     return Scaffold(
       appBar: AppBar(
-        title: Text(auth.currentUser?.displayName ?? "Usuario"),
+        title: Text(auth.currentUser?.displayName ?? "User"),
         centerTitle: true,
         leading: Center(
             child: Container(
@@ -30,21 +33,40 @@ class Home extends StatelessWidget {
             ),
           ),
         )),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            tooltip: 'Open shopping cart',
-            onPressed: () {},
-          ),
+        actions: const [
+          ShoppingCart(),
         ],
       ),
-      body: SingleChildScrollView(
-          child: Column(children: [
-        PastryCard(item: pastryItemExample),
-        PastryCard(item: pastryItemExample),
-        PastryCard(item: pastryItemExample),
-        PastryCard(item: pastryItemExample)
-      ])),
+      body: ActivityView(),
+    );
+  }
+}
+
+class ActivityView extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final activity = ref.watch(activityProvider);
+    return Scaffold(
+      appBar: AppBar(title: const Text('Pull to refresh')),
+      body: RefreshIndicator(
+        onRefresh: () => ref.refresh(activityProvider.future),
+        child: ListView(
+          children: [
+            activity.when(
+              data: (data) {
+                return SingleChildScrollView(
+                    child: Column(children: [
+                  PastryCard(item: pastryItemExample),
+                ]));
+              },
+              error: (error, stackTrace) => const Text("Error :("),
+              loading: () {
+                return const Center(child: CircularProgressIndicator());
+              },
+            )
+          ],
+        ),
+      ),
     );
   }
 }

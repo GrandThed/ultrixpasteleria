@@ -6,6 +6,8 @@ import 'package:ultrixpasteleria/auth_gate.dart';
 import 'package:ultrixpasteleria/firebase_options.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart'
     as providers;
+import 'package:ultrixpasteleria/screens/cart/cart_screen.dart';
+import 'package:ultrixpasteleria/screens/pastry_detail/pastry_detail_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,10 +38,11 @@ class MyApp extends StatelessWidget {
       ),
       home: const AuthGate(),
       routes: {
-        "profile": (context) {
-          return const Scaffold(
-            body: Text("profile"),
-          );
+        PastryDetailScreen.routeName: (context) {
+          return const PastryDetailScreen();
+        },
+        CartScreen.routeName: (context) {
+          return const CartScreen();
         }
       },
     );
