@@ -37,35 +37,34 @@ class Home extends StatelessWidget {
           ShoppingCart(),
         ],
       ),
-      body: ActivityView(),
+      body: const ActivityView(),
     );
   }
 }
 
 class ActivityView extends ConsumerWidget {
+  const ActivityView({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activity = ref.watch(activityProvider);
-    return Scaffold(
-      appBar: AppBar(title: const Text('Pull to refresh')),
-      body: RefreshIndicator(
-        onRefresh: () => ref.refresh(activityProvider.future),
-        child: ListView(
-          children: [
-            activity.when(
-              data: (data) {
-                return SingleChildScrollView(
-                    child: Column(children: [
-                  PastryCard(item: pastryItemExample),
-                ]));
-              },
-              error: (error, stackTrace) => const Text("Error :("),
-              loading: () {
-                return const Center(child: CircularProgressIndicator());
-              },
-            )
-          ],
-        ),
+    return RefreshIndicator(
+      onRefresh: () => ref.refresh(activityProvider.future),
+      child: ListView(
+        children: [
+          activity.when(
+            data: (data) {
+              return SingleChildScrollView(
+                  child: Column(children: [
+                ...data.map((pastry) => PastryCard(item: pastry)),
+              ]));
+            },
+            error: (error, stackTrace) => const Text("Error :("),
+            loading: () {
+              return const Center(child: CircularProgressIndicator());
+            },
+          )
+        ],
       ),
     );
   }

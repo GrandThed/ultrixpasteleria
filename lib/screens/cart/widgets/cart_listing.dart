@@ -16,8 +16,7 @@ class CartListing extends StatelessWidget {
           (pastry) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ListTile(
-              leading: Image.asset(
-                  "lib/assets/Gemini_Generated_Image_oz4ha1oz4ha1oz4h.jpeg"),
+              leading: Image.network(pastry.image!),
               title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

@@ -32,9 +32,7 @@ class PastryDetailScreen extends StatelessWidget {
             children: [
               Hero(
                 tag: "${item.id ?? "unique"}-image",
-                child: Image.asset(
-                    fit: BoxFit.cover,
-                    "lib/assets/Gemini_Generated_Image_oz4ha1oz4ha1oz4h.jpeg"),
+                child: Image.network(fit: BoxFit.cover, item.image!),
               ),
               Positioned.directional(
                 bottom: 10,

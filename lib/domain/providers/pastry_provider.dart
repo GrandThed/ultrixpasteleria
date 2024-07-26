@@ -6,11 +6,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 final activityProvider = FutureProvider((ref) async {
   final db = FirebaseFirestore.instance;
   final querySnapshot = await db.collection("pastry").get();
-  querySnapshot.docs[0].data();
-  // TODO implement request
-  if (true) {
-    return [];
+  if (querySnapshot.docs.isNotEmpty) {
+    return querySnapshot.docs.map((pastryDocs) {
+      return PastryItem.fromJson(pastryDocs.data());
+    });
   } else {
-    return [];
+    throw Error();
   }
 });
