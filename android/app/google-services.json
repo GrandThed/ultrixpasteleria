@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "363949028736",
+    "firebase_url": "https://pasteleria-ultrix-default-rtdb.firebaseio.com",
+    "project_id": "pasteleria-ultrix",
+    "storage_bucket": "pasteleria-ultrix.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363949028736:android:03e772daeabebe89b53d65",
+        "android_client_info": {
+          "package_name": "com.example.ultrixpasteleria"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363949028736-ujarf83c5dlgidlvpoo5cll0p9gq9i34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6a8HoTm2yw9hDFMcafKwii6yhoEhD5s0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363949028736-ujarf83c5dlgidlvpoo5cll0p9gq9i34.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
