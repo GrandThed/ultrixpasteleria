@@ -17,10 +17,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
   provider.FirebaseUIAuth.configureProviders([
     providers.GoogleProvider(clientId: GOOGLE_ID),
   ]);

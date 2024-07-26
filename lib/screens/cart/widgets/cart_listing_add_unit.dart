@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ultrixpasteleria/domain/providers/cart_provider.dart';
 
-class CartListingAddUnit extends StatefulWidget {
+class CartListingAddUnit extends ConsumerStatefulWidget {
   const CartListingAddUnit({
     super.key,
   });
 
   @override
-  State<CartListingAddUnit> createState() => _CartListingAddUnitState();
+  ConsumerState<CartListingAddUnit> createState() => _CartListingAddUnitState();
 }
 
-class _CartListingAddUnitState extends State<CartListingAddUnit> {
+class _CartListingAddUnitState extends ConsumerState<CartListingAddUnit> {
   int amount = 0;
+
+  @override
+  void initState() {
+    final CartNotifier cartProvider = CartNotifier();
+    setState(() {
+      // amount = cartProvider.getAmountFromPastryItem(item);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +29,11 @@ class _CartListingAddUnitState extends State<CartListingAddUnit> {
       return Padding(
         padding: const EdgeInsets.only(left: 46),
         child: IconButton(
-          onPressed: () => setState(() {
-            amount += 1;
-          }),
+          onPressed: () {
+            setState(() {
+              amount += 1;
+            });
+          },
           icon: const Icon(Icons.add),
         ),
       );
