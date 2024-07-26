@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ultrixpasteleria/domain/providers/cart_provider.dart';
 
 class CartListingAddUnit extends ConsumerStatefulWidget {
   const CartListingAddUnit({
@@ -16,7 +15,6 @@ class _CartListingAddUnitState extends ConsumerState<CartListingAddUnit> {
 
   @override
   void initState() {
-    final CartNotifier cartProvider = CartNotifier();
     setState(() {
       // amount = cartProvider.getAmountFromPastryItem(item);
     });
