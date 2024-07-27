@@ -63,6 +63,13 @@ class CartNotifier extends ChangeNotifier {
       return 0;
     }
   }
+
+  int getTotalAmount() {
+    final total = cartListingItems.fold(
+        0, (totalAmount, item) => item.amount! + totalAmount);
+    return cartListingItems.fold(
+        0, (totalAmount, item) => item.amount! + totalAmount);
+  }
 }
 
 final cartProvider = ChangeNotifierProvider<CartNotifier>((ref) {
