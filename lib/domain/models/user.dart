@@ -1,15 +1,18 @@
 class UserData {
-  int? amount;
+  int? points;
+  late String id;
 
-  UserData({this.amount});
+  UserData({this.points, required this.id});
 
-  UserData.fromJson(Map<String, dynamic> json) {
-    amount = json['amount'];
+  UserData.fromJson(Map<String, dynamic> json, String userId) {
+    points = json['points'];
+    id = userId;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['amount'] = amount;
+    data['points'] = points;
+    data['id'] = id;
     return data;
   }
 }

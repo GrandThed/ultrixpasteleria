@@ -48,12 +48,5 @@ class ShoppingCart extends ConsumerWidget {
         ],
       ),
     );
-    // return IconButton(
-    //   icon: const Icon(Icons.shopping_cart),
-    //   tooltip: 'Open shopping cart',
-    //   onPressed: () {
-    //     Navigator.pushNamed(context, CartScreen.routeName);
-    //   },
-    // );
   }
 }
